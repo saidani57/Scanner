@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".extract_text">
+    <ScrollView
+        android:layout_alignParentTop="true"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/text_data"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:text="helllo! capture or choose imaghe "
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/linear_holder"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/button_capture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="capture"
+            android:layout_marginTop="660dp"/>
+        <Button
+            android:visibility="gone"
+            android:layout_marginLeft="100dp"
+            android:id="@+id/button_ctc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add contact"
+            android:layout_marginTop="660dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
