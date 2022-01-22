@@ -28,6 +28,8 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class extract_text extends AppCompatActivity {
     Button button_capture, button_ctc;
@@ -57,31 +59,26 @@ public class extract_text extends AppCompatActivity {
             }
         });
         button_ctc.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
                 String scanned_text = textView_data.getText().toString();
                 String[] splttext=scanned_text .split(" ");
-                for (String a : splttext ){
-                    boolean isNumeric = a.chars().allMatch( Character::isDigit );
-                    if (!(isNumeric) ) {
+                int i = 0 ;
+                if (splttext[i].length()==2){
+                    CharSequence c = splttext[i].concat(" ").concat(splttext[i+1]).concat(" ").concat(splttext[i+2]).trim();
+                    String expression = "^(\\d{2}[- .]?)(\\d{3}[- .]?)(\\d{3})$";
+                    Pattern pattern = Pattern.compile(expression);
+                    Matcher matcher = pattern.matcher(c);
+                    if (matcher.matches()) {
                         Intent intent = new Intent(Intent.ACTION_INSERT);
                         intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
-                        intent.putExtra(ContactsContract.Intents.Insert.NAME ,"personne" );
-                        intent.putExtra(ContactsContract.Intents.Insert.PHONE,  a);
+                        intent.putExtra(ContactsContract.Intents.Insert.NAME, "personne");
+                        intent.putExtra(ContactsContract.Intents.Insert.PHONE, c);
                         startActivity(intent);
-
                     }
                 }
-
-
-
-
-
-
             }
         });
-
     }
 
     @Override
